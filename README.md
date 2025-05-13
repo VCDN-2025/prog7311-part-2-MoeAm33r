@@ -27,3 +27,34 @@ A web platform connecting farmers with green energy solutions in South Africa. B
    ```bash
    git clone https://github.com/MoeAm33r/AgriEnergyConnect.git
    cd AgriEnergyConnect
+Configuration
+
+Edit appsettings.json for your database connection:
+json
+
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=AgriEnergyConnect;Trusted_Connection=True;"
+  }
+}
+
+Running the Application
+bash
+
+dotnet run
+
+Access the app at: https://localhost:5001
+Default Accounts
+Role	Email	Password
+Admin	admin@agrienergy.com	Admin@123
+Farmer	(Register new account)	
+Project Structure
+
+AgriEnergyConnect/
+├── Controllers/     # MVC controllers
+├── Data/            # Database context
+├── Models/          # Entity models
+├── Views/           # Razor views
+├── wwwroot/         # Static files
+├── Program.cs       # Startup
+└── appsettings.json # Configuration
