@@ -1,29 +1,30 @@
-using AgriEnergyConnect.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using AgriEnergyConnect.Data;
+using AgriEnergyConnect.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services
+// Configure EF Core with Identity
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options =>
-{
-    options.SignIn.RequireConfirmedAccount = false;
-    options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 6;
-    options.Password.RequireNonAlphanumeric = false;
-    options.Password.RequireUppercase = false;
-})
-    .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure pipeline
+// Seed Roles & Users
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DbInitializer.InitializeAsync(services);
+}
+
+// Configure Middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -32,27 +33,15 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
 app.UseRouting();
-app.UseAuthentication();
+
+app.UseAuthentication(); // ?? Important
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-app.MapRazorPages();
-
-// Seed data
-using (var scope = app.Services.CreateScope())
-{
-    var services = scope.ServiceProvider;
-    await SeedData.Initialize(
-        services.GetRequiredService<UserManager<IdentityUser>>(),
-        services.GetRequiredService<RoleManager<IdentityRole>>(),
-        services.GetRequiredService<ApplicationDbContext>());
-}
+    pattern: "{controller=Account}/{action=Login}/{id?}");
 
 app.Run();
 
-//Microsoft (2024) ASP.NET Core documentation. Available at:
-//https://learn.microsoft.com/en-us/aspnet/core/
-//(Accessed: 12 July 2024)

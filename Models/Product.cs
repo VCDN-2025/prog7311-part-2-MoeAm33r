@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AgriEnergyConnect.Models
 {
@@ -7,15 +8,19 @@ namespace AgriEnergyConnect.Models
     {
         public int Id { get; set; }
 
-        [Required, StringLength(100)]
-        public string Name { get; set; }
+        [Required]
+        public string ProductName { get; set; }
 
-        [Required, StringLength(50)]
+        [Required]
         public string Category { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
-        public DateTime ProductionDate { get; set; } = DateTime.Now;
+        public DateTime ProductionDate { get; set; }
 
+        [ForeignKey("Farmer")]
         public int FarmerId { get; set; }
+
+        public Farmer Farmer { get; set; }
     }
 }

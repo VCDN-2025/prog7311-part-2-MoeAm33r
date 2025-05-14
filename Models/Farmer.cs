@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AgriEnergyConnect.Models
 {
@@ -7,15 +8,13 @@ namespace AgriEnergyConnect.Models
         public int Id { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public string FullName { get; set; }
 
-        [Required, StringLength(100)]
+        [Required]
         public string FarmName { get; set; }
 
-        [Required, StringLength(100)]
-        public string Location { get; set; }
+        public string Region { get; set; }
 
-        [Phone, StringLength(20)]
-        public string ContactNumber { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

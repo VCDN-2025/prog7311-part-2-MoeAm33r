@@ -1,13 +1,11 @@
-﻿using AgriEnergyConnect.Data;
-using AgriEnergyConnect.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Security.Claims;
+using AgriEnergyConnect.Data;
+using AgriEnergyConnect.Models;
 
 namespace AgriEnergyConnect.Controllers
 {
-    [Authorize(Roles = "Farmer")]
+    [Authorize(Roles = "Employee")]
     public class FarmerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -17,43 +15,24 @@ namespace AgriEnergyConnect.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Dashboard()
+        public IActionResult Index()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var farmer = await _context.Farmers.FirstOrDefaultAsync(f => f.UserId == userId);
-
-            if (farmer == null) return NotFound();
-
-            var products = await _context.Products
-                .Where(p => p.FarmerId == farmer.Id)
-                .ToListAsync();
-
-            return View(products);
+            var farmers = _context.Farmers.ToList();
+            return View(farmers);
         }
 
-        [HttpGet]
-        public IActionResult AddProduct()
-        {
-            return View();
-        }
+        public IActionResult Create() => View();
 
         [HttpPost]
-        public async Task<IActionResult> AddProduct(Product product)
+        public IActionResult Create(Farmer farmer)
         {
             if (ModelState.IsValid)
             {
-                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-                var farmer = await _context.Farmers.FirstOrDefaultAsync(f => f.UserId == userId);
-
-                if (farmer != null)
-                {
-                    product.FarmerId = farmer.Id;
-                    _context.Products.Add(product);
-                    await _context.SaveChangesAsync();
-                    return RedirectToAction("Dashboard");
-                }
+                _context.Farmers.Add(farmer);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return View(product);
+            return View(farmer);
         }
     }
 }

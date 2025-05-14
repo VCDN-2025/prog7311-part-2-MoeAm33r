@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Account Dashboard";
+}
+
+<div class="account-container">
+    <div class="dashboard-card">
+        <h2>Welcome to Agri-Energy Connect</h2>
+        <p>This platform connects Farmers with Green Energy experts to promote sustainable agriculture in South Africa.</p>
+
+        <div class="card-links">
+            <a class="dashboard-button" href="/Farmer/Dashboard">Farmer Dashboard</a>
+            <a class="dashboard-button" href="/Employee/Dashboard">Employee Dashboard</a>
+            <a class="dashboard-button" href="/Account/Logout">Logout</a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f4f4f4;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .account-container {
+        max-width: 800px;
+        margin: 60px auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 12px;
+        border: 2px solid #c0c0c0;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        text-align: center;
+    }
+
+    .dashboard-card h2 {
+        color: #2e7d32;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .dashboard-card p {
+        color: #333;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    .card-links {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .dashboard-button {
+        display: inline-block;
+        background-color: #2e7d32;
+        color: white;
+        padding: 14px 28px;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 2px solid #1b5e20;
+        transition: background-color 0.3s ease;
+        width: 60%;
+        max-width: 300px;
+    }
+
+    .dashboard-button:hover {
+        background-color: #1b5e20;
+    }
+</style>

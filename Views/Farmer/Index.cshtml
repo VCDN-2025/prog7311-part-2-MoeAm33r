@@ -1,0 +1,12 @@
+﻿@model IEnumerable<AgriEnergyConnect.Models.Farmer>
+<h2>Farmer List</h2>
+<a href="/Farmer/Create">Add New Farmer</a>
+<table>
+    <thead><tr><th>Name</th><th>Farm</th><th>Region</th></tr></thead>
+    <tbody>
+        @foreach (var f in Model)
+        {
+            <tr><td>@f.FullName</td><td>@f.FarmName</td><td>@f.Region</td></tr>
+        }
+    </tbody>
+</table>

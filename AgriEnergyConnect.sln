@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36109.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgriEnergyConnect", "AgriEnergyConnect\AgriEnergyConnect.csproj", "{DC604C15-F75F-47EA-A4E7-124A4026A182}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AgriEnergyConnect", "AgriEnergyConnect\AgriEnergyConnect.csproj", "{47091588-3995-4B34-8DC6-64B276CF6719}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DC604C15-F75F-47EA-A4E7-124A4026A182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC604C15-F75F-47EA-A4E7-124A4026A182}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC604C15-F75F-47EA-A4E7-124A4026A182}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC604C15-F75F-47EA-A4E7-124A4026A182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47091588-3995-4B34-8DC6-64B276CF6719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47091588-3995-4B34-8DC6-64B276CF6719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47091588-3995-4B34-8DC6-64B276CF6719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47091588-3995-4B34-8DC6-64B276CF6719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {726CB380-1C1D-4A74-9718-42DCCCCDB167}
+		SolutionGuid = {6499CCFD-F64D-4626-9C43-960973B91FA6}
 	EndGlobalSection
 EndGlobal
