@@ -5,7 +5,7 @@ using AgriEnergyConnect.Models;
 
 namespace AgriEnergyConnect.Controllers
 {
-    [Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Employee, Farmer")]
     public class FarmerController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -34,5 +34,12 @@ namespace AgriEnergyConnect.Controllers
             }
             return View(farmer);
         }
+
+        [Authorize(Roles = "Farmer")]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
     }
 }
