@@ -53,6 +53,11 @@ namespace AgriEnergyConnect.Controllers
         }
 
         [Authorize(Roles = "Employee")]
+        public IActionResult Dashboard()
+        {
+            return View();
+        }
+
         public IActionResult ViewAll(string category, DateTime? fromDate, DateTime? toDate)
         {
             var products = _context.Products.Include(p => p.Farmer).AsQueryable();
